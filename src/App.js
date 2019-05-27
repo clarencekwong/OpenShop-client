@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import API_URL from './config'
 
 import './App.css';
 import HomePage from './components/HomePage'
@@ -46,6 +47,8 @@ class App extends Component {
   render() {
     const jwtUser = localStorage.getItem('user_id')
     const jwtVendor = localStorage.getItem('vendor_id')
+    console.log(process.env['NODE_ENV'])
+    console.log(API_URL)
     return (
       <div className="App">
         <Menu fixed="top">

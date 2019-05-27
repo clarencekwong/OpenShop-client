@@ -1,4 +1,5 @@
 import React from 'react'
+import API_URL from '../config'
 import { Button, Form, Grid, Header, Segment } from 'semantic-ui-react'
 
 class VendorRegistrationForm extends React.Component {
@@ -22,7 +23,7 @@ class VendorRegistrationForm extends React.Component {
       email: this.state.email,
       password: this.state.password
     }
-    fetch("http://localhost:3000/api/v1/vendors", {
+    fetch(`${API_URL}/api/v1/vendors`, {
       method: "POST",
       headers: {
         "Content-Type":"application/json",

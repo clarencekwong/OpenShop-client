@@ -1,4 +1,5 @@
 import React from 'react'
+import API_URL from '../config'
 import { Form, Container, Segment } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 
@@ -34,7 +35,7 @@ class ProductForm extends React.Component {
     formData.append('inventory', this.state.inventory)
     formData.append('photo', this.state.photo)
     formData.append('store_id', this.props.myStore.store.id)
-    fetch("http://localhost:3000/api/v1/products", {
+    fetch(`${API_URL}/api/v1/products`, {
       method: "POST",
       body: formData
     })

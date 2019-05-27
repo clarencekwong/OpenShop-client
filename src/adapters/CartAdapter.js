@@ -1,8 +1,9 @@
 import store from '../store'
+import API_URL from '../config'
 
 class CartAdapter {
-  static ORDER_URL = 'http://localhost:3000/api/v1/orders'
-  static TRANSACTION_URL = 'http://localhost:3000/api/v1/transactions'
+  static ORDER_URL = `${API_URL}/api/v1/orders`
+  static TRANSACTION_URL = `${API_URL}/api/v1/transactions`
 
   static getCart(order_id) {
     return fetch(`${this.ORDER_URL}/${order_id}`)

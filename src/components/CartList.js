@@ -2,6 +2,7 @@ import React from 'react'
 import uuid from 'uuid'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import API_URL from '../config'
 
 import { Table, Button } from 'semantic-ui-react'
 
@@ -29,7 +30,7 @@ class CartList extends React.Component {
       total: this.props.order.total_cost
     }
     CartAdapter.createTransactions(transactionData)
-    fetch(`http://localhost:3000/api/v1/orders/${localStorage.getItem('order_id')}`, {
+    fetch(`${API_URL}/api/v1/orders/${localStorage.getItem('order_id')}`, {
       method: "PATCH",
       headers: {
         "Content-Type":"application/json",
@@ -45,7 +46,7 @@ class CartList extends React.Component {
   }
 
   handleDelete = () => {
-    fetch(`http://localhost:3000/api/v1/orders/${localStorage.getItem('order_id')}`, {
+    fetch(`${API_URL}/api/v1/orders/${localStorage.getItem('order_id')}`, {
       method: 'DELETE'
     })
     .then(() => {

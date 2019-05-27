@@ -1,6 +1,7 @@
 import React from 'react'
 import { Form, Container } from 'semantic-ui-react'
 import { connect } from 'react-redux'
+import API_URL from '../config'
 
 import UserAdapter from '../adapters/UserAdapter'
 
@@ -28,7 +29,7 @@ class StoreForm extends React.Component {
     formData.append('name', this.state.name)
     formData.append('vendor_id', this.props.vendor.id)
     formData.append('photo', this.state.photo)
-    fetch("http://localhost:3000/api/v1/stores", {
+    fetch(`${API_URL}/api/v1/stores`, {
       method: "POST",
       body: formData
     })

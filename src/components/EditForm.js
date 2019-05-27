@@ -1,4 +1,5 @@
 import React from 'react'
+import API_URL from '../config'
 
 import { Form, Container, Segment } from 'semantic-ui-react'
 import { connect } from 'react-redux'
@@ -38,7 +39,7 @@ class EditForm extends React.Component {
     if (this.state.photo) {
       formData.append('photo', this.state.photo)
     }
-    fetch(`http://localhost:3000/api/v1/products/${this.props.product.id}`, {
+    fetch(`${API_URL}/api/v1/products/${this.props.product.id}`, {
       method: "PATCH",
       body: formData
     })

@@ -1,7 +1,8 @@
 import store from '../store'
+import API_URL from '../config'
 
 class StoreAdapter {
-  static STORE_URL = 'http://localhost:3000/api/v1/stores'
+  static STORE_URL = `${API_URL}/api/v1/stores`
 
   static getStores() {
     fetch(`${this.STORE_URL}`)

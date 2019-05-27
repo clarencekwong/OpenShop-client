@@ -1,4 +1,5 @@
 import React from 'react'
+import API_URL from '../config'
 import { Button, Form, Grid, Header, Segment, Message } from 'semantic-ui-react'
 
 import { connect } from 'react-redux'
@@ -25,7 +26,7 @@ class VendorLoginForm extends React.Component {
       email: this.state.email,
   		password: this.state.password
     }
-		fetch("http://localhost:3000/api/v1/vendorlogin", {
+		fetch(`${API_URL}/api/v1/vendorlogin`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",

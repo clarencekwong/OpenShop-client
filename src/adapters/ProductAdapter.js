@@ -1,7 +1,8 @@
 import store from '../store'
+import API_URL from '../config'
 
 class ProductAdapter {
-  static PRODUCT_URL = 'http://localhost:3000/api/v1/products'
+  static PRODUCT_URL = `${API_URL}/api/v1/products`
 
   static fetchProduct(product_id) {
     return fetch(`${this.PRODUCT_URL}/${product_id}`)

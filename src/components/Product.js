@@ -1,4 +1,5 @@
 import React from 'react'
+import API_URL from '../config'
 
 import { Card, Image, Button, Icon, Label } from 'semantic-ui-react'
 
@@ -10,7 +11,7 @@ const Product = (props) => {
     const data = {
       user_id: props.user.id
     }
-    return fetch('http://localhost:3000/api/v1/orders', {
+    return fetch(`${API_URL}/api/v1/orders`, {
       method: 'POST',
       headers: {
         'Content-Type':'application/json',
@@ -23,7 +24,7 @@ const Product = (props) => {
   }
 
   const addToCart = (data) => {
-    fetch('http://localhost:3000/api/v1/items', {
+    fetch(`${API_URL}/api/v1/items`, {
       method: 'POST',
       headers: {
         'Content-Type':'application/json',
