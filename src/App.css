@@ -1,0 +1,115 @@
+/* .App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+} */
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.regForm {
+  width: 500px;
+  margin: auto;
+  margin-top: 10%;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+body > div, body > div > div, body > div > div > div.login-form {
+  height: 100%;
+}
+
+a.ui.card, div.ui.card {
+  margin: 5px !important;
+  margin-bottom: 5px !important;
+  margin-top: 5px !important;
+  width: 275px;
+  box-shadow: 4px 2px 2px grey;
+}
+
+div > div.ui.card > div.content {
+  background-color: lightgrey;
+}
+
+div.ui.card {
+  height: 400px;
+}
+
+.container {
+  margin-top: 10%;
+  text-align: center;
+}
+
+#root > div > div.ui.top.fixed.menu > a, #root > div > div.ui.top.fixed.menu > div > a {
+  color: white;
+}
+
+div.ui.top.fixed.menu {
+  background-color: #54a0ff;
+}
+
+body {
+  background-color: white !important;
+}
+
+div.ui.card > .ui.red.icon.button {
+  background-color: #ff6b6b;
+}
+
+div.ui.card > .ui.green.icon.button {
+  background-color: #1dd1a1;
+}
+
+#root > div > div.ui.container > div > div:nth-child(1) > div {
+  margin: 5px;
+  background-color: whitesmoke;
+}
+
+img.ui.image {
+  height: 200px;
+}
+
+#root > div > div.ui.container > form {
+  width: 550px;
+  margin: auto;
+}
+
+div.ui.segment.forms {
+  width: 500px;
+  margin: auto;
+  background-color: whitesmoke;
+}
+
+div.ui.inverted.vertical.center.aligned.segment {
+  background: url('https://res.cloudinary.com/sagacity/image/upload/c_crop,h_2800,w_4200,x_0,y_0/c_limit,dpr_auto,f_auto,fl_lossy,q_80,w_1080/abejas-2_sycdc6.jpg');
+  background-size: cover;
+}
