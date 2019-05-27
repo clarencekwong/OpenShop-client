@@ -1,68 +1,22 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# OpenShop
 
-## Available Scripts
+OpenShop is e-commerce service provider directed to small businesses to allow them to build their online shopping presence. Vendors can easily add and edit shop products to be sold online. Consumers are able to access stores advertised by companies and shop what they want.
 
-In the project directory, you can run:
+## Libraries
+OpenShop is built with the following:
+- [create-react-app](https://github.com/facebook/create-react-app)
+- [Redux](https://github.com/reduxjs/redux) manages state management
+- [React Router](https://github.com/ReactTraining/react-router) handles component navigation based on the URL/history
+- [Recharts](https://github.com/recharts/recharts) is used to animate and display transactional data on the page
+- [Semantic UI React](https://github.com/Semantic-Org/Semantic-UI-React) is used for styling
+- [Amazon Web Services S3](https://aws.amazon.com/s3/) used to host all store/product images
+- [Ruby on Rails](https://rubyonrails.org/) used for the API back-end
 
-### `npm start`
+## Installation
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Fork and clone this repository to your local machine, ```cd``` into the the server folder, and run ```bundle install```.
+Make sure you have [postgreSQL](https://postgresapp.com/) installed and running on your local machine. Run ```rake db:create && rake db:migrate``` to create your database and established the existing schemas. You can run ```rake db:seed``` if you wish to seed your local repository with my placeholder data. Finishing these steps make sure to set-up an Amazon Web Service (AWS) account and create a bucket for the Simple Storage Service. Once that is set-up run ```rails credentials:edit``` to access your credentials files and insert your AWS access keys, secret access key, region, and bucket into the file. As well as setting up a JWT key inside. Once this is complete, run ```rails s``` to start your locally-hosted back-end. Once your back-end is set-up, ```cd``` into the client folder and run ```npm install```, then ```npm start```. You can now create a new account or using an existing account in the seeded data to start your OpenShop journey.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+## Future Development
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Implementing Stripe, PayPal or another online payment processing system for check-out feature.
