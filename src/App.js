@@ -48,7 +48,6 @@ class App extends Component {
     const jwtUser = localStorage.getItem('user_id')
     const jwtVendor = localStorage.getItem('vendor_id')
     console.log(process.env['NODE_ENV'])
-    console.log(API_URL)
     return (
       <div className="App">
         <Menu fixed="top">
