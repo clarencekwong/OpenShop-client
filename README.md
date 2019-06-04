@@ -1,6 +1,6 @@
 # OpenShop
 
-[OpenShop](https://fs-openshop.herokuapp.com/)
+[OpenShop](https://fs-openshop-prod.herokuapp.com/)
 
 Please allow the dyno to spin up if the application is off
 
