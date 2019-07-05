@@ -77,7 +77,7 @@ class CartList extends React.Component {
                 </Table.Row>
               </Table.Body>
             </Table>
-            <Button as={Link} to="/" style={{float:"right"}} onClick={this.handleClick}>Check Out</Button>
+            <Button as={Link} to="/checkout" style={{float:"right"}} >Check Out</Button>
             <Button as={Link} to="/" style={{float:"right"}} onClick={this.handleDelete}>Delete Cart</Button>
           </React.Fragment> :
           <React.Fragment>

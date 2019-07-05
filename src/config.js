@@ -6,6 +6,7 @@ let API_URL;
 //   API_URL = 'https://openshop-api.herokuapp.com'
 // }
 
-API_URL = 'https://openshop-api.herokuapp.com'
+API_URL = 'http://localhost:3000'
+// API_URL = 'https://openshop-api.herokuapp.com'
 
 export default API_URL

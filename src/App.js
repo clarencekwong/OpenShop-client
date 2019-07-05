@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { StripeProvider } from 'react-stripe-elements';
 
 import './App.css';
 import HomePage from './components/HomePage'
@@ -12,7 +13,7 @@ import StoreProductContainer from './containers/StoreProductContainer'
 import TransactionContainer from './containers/TransactionContainer'
 import CartContainer from './containers/CartContainer'
 import DashboardContainer from './containers/DashboardContainer'
-import StripeContainer from './containers/StripeContainer'
+import CheckoutContainer from './containers/CheckoutContainer'
 import ProductForm from './components/ProductForm'
 import NotFound from './components/NotFound'
 import UserAdapter from './adapters/UserAdapter'
@@ -47,57 +48,59 @@ class App extends Component {
     const jwtUser = localStorage.getItem('user_id')
     const jwtVendor = localStorage.getItem('vendor_id')
     return (
-      <div className="App">
-        <Menu fixed="top">
-          <Menu.Item as={Link} to="/">
-            <Image size="mini" src={oslogo} />
-          </Menu.Item>
-          { jwtVendor ? null : <Menu.Item as={Link} to="/stores" content="Stores" />}
-          { this.props.storeCreated ? null : <Menu.Item as={Link} to="/stores/new" content="Create Stores" />}
-          { jwtVendor ?
-            <React.Fragment>
-              <Menu.Item as={Link} to="/product/new" content="Create Product" />
-              <Menu.Item as={Link} to="/product" content="My Products" />
-            </React.Fragment>
-            : null
-          }
-          <Menu.Menu position="right">
-            { jwtUser ? <Menu.Item as={Link} to="/transactions" content="Transactions" /> : null}
-            { jwtVendor ? <Menu.Item as={Link} to="/dashboard" content="Dashboard" /> : null}
-            { jwtVendor ? null :
-            <React.Fragment>
-              <Menu.Item as={Link} to="/cart">
-                <Icon name="shopping cart" />
-              </Menu.Item>
-            </React.Fragment>
-            }
-            { this.props.logged_in ?
-              null :
+      <StripeProvider apiKey="pk_test_lWyf0uGbEdE4op0rDXNpUtt500rn9tdXE7">
+        <div className="App">
+          <Menu fixed="top">
+            <Menu.Item as={Link} to="/">
+              <Image size="mini" src={oslogo} />
+            </Menu.Item>
+            { jwtVendor ? null : <Menu.Item as={Link} to="/stores" content="Stores" />}
+            { this.props.storeCreated ? null : <Menu.Item as={Link} to="/stores/new" content="Create Stores" />}
+            { jwtVendor ?
               <React.Fragment>
-                <Menu.Item as={Link} to="/login" content="Log In" />
-                <Menu.Item as={Link} to="/register" content="Register" />
+                <Menu.Item as={Link} to="/product/new" content="Create Product" />
+                <Menu.Item as={Link} to="/product" content="My Products" />
               </React.Fragment>
+              : null
             }
-            { this.props.logged_in ? <Menu.Item as={Link} to="/" onClick={this.handleLogOut} content="Log Out" /> : null }
-          </Menu.Menu>
-        </Menu>
-        <Switch>
-          <Route path="/stores" exact component={StoreContainer} />
-          <Route path="/stores/new" component={StoreForm} />
-          <Route path="/product" exact component={StoreProductContainer} />
-          <Route path="/cart" component={CartContainer} />
-          <Route path="/checkout" component={StripeContainer} />
-          <Route path="/login" component={LoginContainer} />
-          <Route path="/dashboard" component={DashboardContainer} />
-          <Route path="/register" component={RegisterContainer} />
-          <Route path="/transactions" component={TransactionContainer} />
-          {this.props.selectedStore ? <Route path={`/${this.props.selectedStore.name}`} component={ProductContainer} /> : null}
-          <Route path="/product/:id/edit" component={EditForm} />
-          <Route path="/product/new" component={ProductForm} />
-          <Route path="/" exact component={HomePage} />
-          <Route component={NotFound} />
-        </Switch>
-      </div>
+            <Menu.Menu position="right">
+              { jwtUser ? <Menu.Item as={Link} to="/transactions" content="Transactions" /> : null}
+              { jwtVendor ? <Menu.Item as={Link} to="/dashboard" content="Dashboard" /> : null}
+              { jwtVendor ? null :
+              <React.Fragment>
+                <Menu.Item as={Link} to="/cart">
+                  <Icon name="shopping cart" />
+                </Menu.Item>
+              </React.Fragment>
+              }
+              { this.props.logged_in ?
+                null :
+                <React.Fragment>
+                  <Menu.Item as={Link} to="/login" content="Log In" />
+                  <Menu.Item as={Link} to="/register" content="Register" />
+                </React.Fragment>
+              }
+              { this.props.logged_in ? <Menu.Item as={Link} to="/" onClick={this.handleLogOut} content="Log Out" /> : null }
+            </Menu.Menu>
+          </Menu>
+          <Switch>
+            <Route path="/stores" exact component={StoreContainer} />
+            <Route path="/stores/new" component={StoreForm} />
+            <Route path="/product" exact component={StoreProductContainer} />
+            <Route path="/cart" component={CartContainer} />
+            <Route path="/checkout" component={CheckoutContainer} />
+            <Route path="/login" component={LoginContainer} />
+            <Route path="/dashboard" component={DashboardContainer} />
+            <Route path="/register" component={RegisterContainer} />
+            <Route path="/transactions" component={TransactionContainer} />
+            {this.props.selectedStore ? <Route path={`/${this.props.selectedStore.name}`} component={ProductContainer} /> : null}
+            <Route path="/product/:id/edit" component={EditForm} />
+            <Route path="/product/new" component={ProductForm} />
+            <Route path="/" exact component={HomePage} />
+            <Route component={NotFound} />
+          </Switch>
+        </div>
+      </StripeProvider>
     );
   }
 }
