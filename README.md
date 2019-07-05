@@ -16,7 +16,7 @@ OpenShop is built with the following:
 - [Amazon Web Services S3](https://aws.amazon.com/s3/) used to host all store/product images
 - [Ruby on Rails](https://rubyonrails.org/) used for the API back-end
 - [Stripe](https://stripe.com/) used for the payment processing
-- [react-toastify](https://github.com/fkhadra/react-toastify) used for notifactions
+- [react-toastify](https://github.com/fkhadra/react-toastify) used for notifications
 
 ## Installation
 
