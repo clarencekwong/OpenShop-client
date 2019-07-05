@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import API_URL from '../config'
 import { CardElement, injectStripe } from 'react-stripe-elements';
 
 import CartAdapter from '../adapters/CartAdapter'
@@ -18,18 +19,22 @@ class CheckoutForm extends Component {
         try {
             let { token } = await this.props.stripe.createToken({ name: "Tester" });
             console.log("Submitting: ", token)
+            const data = {
+                token_id: token.id
+            }
+            let response = await fetch(`${API_URL}/api/v1/charge`, {
+                method: "POST",
+                headers: { 
+                    "Content-Type": "application/json",
+                    "Accepts": "application/json",
+                },
+                body: JSON.stringify(data)
+            });
+
+            if (response.ok) console.log("Purchase Complete!")
         } catch (error) {
             throw error
         } 
-        
-        // let response = await fetch("/charge", {
-        //     method: "POST",
-        //     headers: { "Content-Type": "text/plain" },
-        //     body: token.id
-        // });
-
-        // if (response.ok) console.log("Purchase Complete!")
-        
     }
 
     render() {
