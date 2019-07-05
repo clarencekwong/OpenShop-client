@@ -21,30 +21,6 @@ class CartList extends React.Component {
     return this.props.cart.map(cart => <Cart key={uuid()} cart={cart}/>)
   }
 
-  handleClick = () => {
-    const data = {
-      status: true
-    }
-    const transactionData = {
-      user_id: this.props.order.user_id,
-      total: this.props.order.total_cost
-    }
-    CartAdapter.createTransactions(transactionData)
-    fetch(`${API_URL}/api/v1/orders/${localStorage.getItem('order_id')}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type":"application/json",
-        "Accepts":"application/json"
-      },
-      body: JSON.stringify(data)
-    })
-    .then(r => r.json())
-    .then(r => {
-      localStorage.removeItem('order_id')
-      CartAdapter.submitCart()
-    })
-  }
-
   handleDelete = () => {
     fetch(`${API_URL}/api/v1/orders/${localStorage.getItem('order_id')}`, {
       method: 'DELETE'

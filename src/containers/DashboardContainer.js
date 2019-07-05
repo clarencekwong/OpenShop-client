@@ -3,7 +3,6 @@ import TotalVolume from '../components/TotalVolume'
 import DashboardProductList from '../components/DashboardProductList'
 
 import { Grid, Container } from 'semantic-ui-react'
-import { connect } from 'react-redux'
 
 class DashboardContainer extends React.Component {
 
@@ -21,10 +20,4 @@ class DashboardContainer extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    vendor: state.user.vendor
-  }
-}
-
-export default connect(mapStateToProps)(DashboardContainer)
+export default DashboardContainer

@@ -2,6 +2,7 @@ import store from '../store'
 import API_URL from '../config'
 
 import StoreAdapter from './StoreAdapter'
+import CartAdapter from './CartAdapter'
 
 class UserAdapter {
   static USER_URL = `${API_URL}/api/v1/users`
@@ -61,13 +62,16 @@ class UserAdapter {
     .then(res => res.json())
     .then(response => {
       if (response.errors) {
-         alert(response.errors)
-       } else {
-         store.dispatch({type: 'LOADING_NOW'})
-         UserAdapter.setUser(response.id)
-         StoreAdapter.selectedStoreRefresh(localStorage.getItem('store_id'))
-         UserAdapter.getUserOrders(response.id)
-         .then(() => store.dispatch({type: 'DONE_LOADING'}))
+        alert(response.errors)
+      } else {
+        store.dispatch({type: 'LOADING_NOW'})
+        UserAdapter.setUser(response.id)
+        if (localStorage.getItem('store_id')) {
+          StoreAdapter.selectedStoreRefresh(localStorage.getItem('store_id'))
+        }
+        CartAdapter.fetchTransactions(response.id)
+        UserAdapter.getUserOrders(response.id)
+        .then(() => store.dispatch({type: 'DONE_LOADING'}))
        }
     })
   }

@@ -3,6 +3,8 @@ import API_URL from '../config'
 import { Form, Container, Segment } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 
+import StoreAdapter from '../adapters/StoreAdapter'
+
 class ProductForm extends React.Component {
   state = {
     name: '',
@@ -48,6 +50,7 @@ class ProductForm extends React.Component {
       photo: null
     })
     e.target.reset()
+    StoreAdapter.getStoreProducts(this.props.myStore.store.id)
   }
 
   render() {

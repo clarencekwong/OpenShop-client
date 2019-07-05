@@ -12,7 +12,7 @@ class CheckoutContainer extends React.Component {
         return (
             <Container className="Checkout">
                 <Elements>
-                    <CheckoutForm order={this.props.order}/>
+                    <CheckoutForm order={this.props.order} history={this.props.history}/>
                 </Elements>
             </Container>
         )

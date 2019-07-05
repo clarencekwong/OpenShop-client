@@ -3,6 +3,7 @@ import API_URL from '../config'
 import { CardElement, injectStripe } from 'react-stripe-elements';
 
 import CartAdapter from '../adapters/CartAdapter'
+import { toast } from 'react-toastify';
 
 import { Table } from 'semantic-ui-react'
 
@@ -14,13 +15,43 @@ class CheckoutForm extends Component {
         }
     }
 
+    notify = () => {
+        toast("Transactions completed!");
+        console.log("toasted")
+    }
+
+    checkout = () => {
+        const data = {
+            status: true
+        }
+        const transactionData = {
+            user_id: this.props.order.user_id,
+            total: this.props.order.total_cost
+        }
+        CartAdapter.createTransactions(transactionData)
+        fetch(`${API_URL}/api/v1/orders/${localStorage.getItem('order_id')}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+                "Accepts": "application/json"
+            },
+            body: JSON.stringify(data)
+        })
+            .then(r => r.json())
+            .then(r => {
+                localStorage.removeItem('order_id')
+                CartAdapter.submitCart()
+            })
+    }
+
     submit = async (ev) => {
         // User clicked submit
         try {
             let { token } = await this.props.stripe.createToken({ name: "Tester" });
             console.log("Submitting: ", token)
             const data = {
-                token_id: token.id
+                token_id: token.id,
+                amount: this.props.order.total_cost
             }
             let response = await fetch(`${API_URL}/api/v1/charge`, {
                 method: "POST",
@@ -31,7 +62,12 @@ class CheckoutForm extends Component {
                 body: JSON.stringify(data)
             });
 
-            if (response.ok) console.log("Purchase Complete!")
+            if (response.ok) {
+                console.log("Purchase Complete!")
+                this.checkout()
+                this.notify()
+                this.props.history.push('/')
+            }
         } catch (error) {
             throw error
         } 
@@ -51,7 +87,7 @@ class CheckoutForm extends Component {
                     </Table.Body>
                 </Table>
                 <CardElement />
-                <button onClick={this.submit}>Send</button>
+                <button onClick={this.submit}>Confirm</button>
             </div>
         );
     }

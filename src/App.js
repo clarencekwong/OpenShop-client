@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { StripeProvider } from 'react-stripe-elements';
+import { ToastContainer } from 'react-toastify';
 
 import './App.css';
 import HomePage from './components/HomePage'
@@ -20,6 +21,7 @@ import UserAdapter from './adapters/UserAdapter'
 import oslogo from './assets/openshop_logo.png'
 
 import 'semantic-ui-css/semantic.min.css'
+import 'react-toastify/dist/ReactToastify.css';
 import { Menu, Image, Icon } from "semantic-ui-react"
 import { Route, Switch, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
@@ -56,7 +58,7 @@ class App extends Component {
             </Menu.Item>
             { jwtVendor ? null : <Menu.Item as={Link} to="/stores" content="Stores" />}
             { this.props.storeCreated ? null : <Menu.Item as={Link} to="/stores/new" content="Create Stores" />}
-            { jwtVendor ?
+            { jwtVendor && this.props.storeCreated ?
               <React.Fragment>
                 <Menu.Item as={Link} to="/product/new" content="Create Product" />
                 <Menu.Item as={Link} to="/product" content="My Products" />
@@ -99,6 +101,7 @@ class App extends Component {
             <Route path="/" exact component={HomePage} />
             <Route component={NotFound} />
           </Switch>
+          <ToastContainer />
         </div>
       </StripeProvider>
     );

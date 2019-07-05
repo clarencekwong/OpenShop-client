@@ -19,7 +19,7 @@ function userReducer(state = initialUserState, action) {
     case "LOG_USER":
       return {...state, logged_in: true}
     case "LOGOUT_USER":
-      return {...state, logged_in: false}
+      return {...state, logged_in: false, storeOrders: []}
     case "STORE_CREATED":
       return {...state, storeCreated: action.payload}
     case "STORE_RESET":
