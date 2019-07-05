@@ -49,6 +49,7 @@ class App extends Component {
   render() {
     const jwtUser = localStorage.getItem('user_id')
     const jwtVendor = localStorage.getItem('vendor_id')
+    console.log(process.env['NODE_ENV'])
     return (
       <StripeProvider apiKey="pk_test_lWyf0uGbEdE4op0rDXNpUtt500rn9tdXE7">
         <div className="App">
